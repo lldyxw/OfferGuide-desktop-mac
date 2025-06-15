@@ -8,15 +8,16 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest  # 关键：必须选择 macOS 运行器
+    runs-on: macos-latest  # 必须使用 macOS 运行器
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4  # 更新到最新版
 
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: 20
+        cache: 'npm'
 
     - name: Install dependencies
       run: npm install
@@ -25,7 +26,8 @@ jobs:
       run: npm run dist:mac
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4  # 关键更新！必须使用 v4
       with:
         name: Mac-App-DMG
         path: dist/*.dmg
+        retention-days: 3  # 自动清理旧构建
