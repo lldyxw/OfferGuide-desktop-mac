@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PC客户端</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+        .status {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f5f5f5;
+        }
+        .log-area {
+            height: 300px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            white-space: pre-wrap;
+        }
+         #user-info {
+             padding: 10px 15px;
+             background-color: #2c3e50;
+             color: white;
+             font-size: 14px;
+             display: flex;
+             align-items: center;
+             justify-content: space-between;
+         }
+
+        #user-info span {
+            margin-right: 10px;
+        }
+
+        #logged-in-phone {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>PC客户端</h1>
+    <div id="user-info" style="padding: 10px; background-color: #2c3e50; color: white; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <span>用户名：</span>
+            <span id="logged-in-phone"></span>
+        </div>
+        <button id="logout-btn" style="padding: 5px 10px; background: #e74c3c; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            退出登录
+        </button>
+    </div>
+    <div class="button-group">
+        <button id="connectBtn">开始连接</button>
+        <button id="disconnectBtn" disabled>断开连接</button>
+    </div>
+
+    <div>
+        <h3>连接状态</h3>
+        <div id="connectionStatus" class="status">未连接</div>
+    </div>
+
+    <div>
+        <h3>消息日志</h3>
+        <div id="messageLog" class="log-area"></div>
+    </div>
+</div>
+
+<script src="./renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfferGuide - 已助力17,000+求职者斩获心仪Offer！</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .slogan {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .promo-banner {
+            background-color: #fff8e6;
+            color: #ff9500;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .tab.active {
+            color: #357B60;
+            border-bottom: 2px solid #357B60;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: border 0.3s;
+        }
+
+        .input-field:focus {
+            border-color: #357B60;
+            outline: none;
+        }
+
+        .code-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .code-input {
+            flex: 1;
+        }
+
+        .get-code-btn {
+            background-color: #f0f5ff;
+            color: #357B60;
+            border: none;
+            border-radius: 8px;
+            padding: 0 15px;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .get-code-btn:disabled {
+            background-color: #f5f5f5;
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .checkbox {
+            margin-right: 8px;
+        }
+
+        .privacy-link {
+            color: #357B60;
+            text-decoration: none;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #357B60;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #2c6651;
+        }
+
+        .input-error {
+            border-color: #ff4444 !important;
+            animation: input-shake 0.4s;
+        }
+
+        @keyframes input-shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <div class="logo">OfferGuide</div>
+    <div class="slogan">已助力17,000+求职者斩获心仪Offer！</div>
+
+    <div class="promo-banner">新用户首次登录，直接领取7.5元红包</div>
+
+    <div class="tab-container">
+        <div class="tab active" onclick="switchTab('phone')">手机号登录</div>
+<!--        <div class="tab" onclick="switchTab('email')">邮箱登录</div>-->
+    </div>
+
+    <form id="phoneForm">
+        <div class="input-group">
+            <label class="input-label">请输入手机号</label>
+            <input type="tel" name="phone" class="input-field" placeholder="请输入手机号" maxlength="11">
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">请输入验证码</label>
+            <div class="code-container">
+                <input type="text" name="code" class="input-field code-input" placeholder="请输入验证码">
+                <button type="button" class="get-code-btn">获取验证码</button>
+            </div>
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="agree" class="checkbox" checked required>
+            <label for="agreeEmail">
+                已经阅读并同意<a href="javascript:void(0);" onclick="window.location.assign('/userAgreement')" class="privacy-link">《用户服务协议》</a>
+            </label>
+        </div>
+
+        <button type="submit" class="login-btn">登录 / 注册</button>
+    </form>
+
+    <form id="emailForm" style="display: none;">
+        <div class="input-group">
+            <label class="input-label">请输入邮箱</label>
+            <input type="email" name="email" class="input-field" placeholder="请输入邮箱">
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">请输入验证码</label>
+            <div class="code-container">
+                <input type="text" name="code" class="input-field code-input" placeholder="请输入验证码">
+                <button type="button" class="get-code-btn">获取验证码</button>
+            </div>
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="agreeEmail" class="checkbox" checked required>
+            <label for="agreeEmail">
+                已经阅读并同意<a href="javascript:void(0);" onclick="window.location.assign('/userAgreement')" class="privacy-link">《用户服务协议》</a>
+            </label>
+        </div>
+
+        <button type="submit" class="login-btn">登录 / 注册</button>
+    </form>
+</div>
+
+<script>
+    const API_BASE_URL = 'https://offerguide.cn';
+
+    // 标签切换函数
+    function switchTab(type) {
+        const phoneTab = document.querySelector('.tab:nth-child(1)');
+        const emailTab = document.querySelector('.tab:nth-child(2)');
+        const phoneForm = document.getElementById('phoneForm');
+        const emailForm = document.getElementById('emailForm');
+
+        if (type === 'phone') {
+            phoneTab.classList.add('active');
+            emailTab.classList.remove('active');
+            phoneForm.style.display = 'block';
+            emailForm.style.display = 'none';
+        } else {
+            phoneTab.classList.remove('active');
+            emailTab.classList.add('active');
+            phoneForm.style.display = 'none';
+            emailForm.style.display = 'block';
+        }
+    }
+
+    // 验证手机号格式
+    function isValidPhone(phone) {
+        return /^1[3-9]\d{9}$/.test(phone);
+    }
+
+    // 验证邮箱格式
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    // 发送验证码
+    async function sendCode(type, value) {
+        const endpoint = type === 'phone' ? '/sendPhoneCode' : '/sendEmailCode';
+        const btn = document.querySelector(`#${type}Form .get-code-btn`);
+
+        try {
+            const response = await fetch(API_BASE_URL + endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ [type]: value })
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                // 发送成功，开始倒计时
+                btn.disabled = true;
+                let count = 60;
+                const timer = setInterval(() => {
+                    btn.textContent = `${count--}秒后重试`;
+                    if (count < 0) {
+                        clearInterval(timer);
+                        btn.disabled = false;
+                        btn.textContent = '获取验证码';
+                    }
+                }, 1000);
+            } else {
+                alert(result.message || '验证码发送失败');
+            }
+        } catch (error) {
+            alert('验证码发送失败，请稍后重试');
+            console.error('Send code error:', error);
+        }
+    }
+
+    // 绑定获取验证码按钮事件
+    document.querySelectorAll('.get-code-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const form = this.closest('form');
+            const isPhone = form.id === 'phoneForm';
+            const input = isPhone ? form.querySelector('input[name="phone"]') : form.querySelector('input[name="email"]');
+            const value = input.value.trim();
+
+            input.classList.remove('input-error');
+
+            if (!value) {
+                input.classList.add('input-error');
+                alert(isPhone ? '请输入手机号' : '请输入邮箱地址');
+                return;
+            }
+
+            if (isPhone && !isValidPhone(value)) {
+                input.classList.add('input-error');
+                alert('请输入正确的手机号格式');
+                return;
+            }
+
+            if (!isPhone && !isValidEmail(value)) {
+                input.classList.add('input-error');
+                alert('请输入正确的邮箱格式');
+                return;
+            }
+
+            sendCode(isPhone ? 'phone' : 'email', value);
+        });
+    });
+
+    // 处理表单提交
+    document.getElementById('phoneForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const phone = this.querySelector('input[name="phone"]').value;
+        const code = this.querySelector('input[name="code"]').value;
+
+        if (!phone || !isValidPhone(phone)) {
+            alert('请输入正确的手机号');
+            return;
+        }
+
+        if (!code) {
+            alert('请输入验证码');
+            return;
+        }
+
+        try {
+            const response = await fetch(API_BASE_URL + '/loginByPhoneByPcClient', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    phone: phone,
+                    code: code
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+
+            if (result.success) {
+                // 存储用户数据并导航
+                await window.electronAPI.setUserData({
+                    phone: phone
+                });
+
+                // 导航到首页
+                const success = await window.electronAPI.navigate('pc-index.html');
+                if (!success) {
+                    throw new Error('导航到首页失败');
+                }
+            } else {
+                // 错误处理保持不变
+                const errorMsg = result.msg || '登录失败，请检查验证码是否正确';
+                if (errorMsg === "pc客户端登陆不允许进行注册") {
+                    alert('该手机号未注册，请先通过其他方式注册');
+                } else if (errorMsg === "验证码校验失败") {
+                    alert('验证码错误或已过期，请重新获取');
+                } else {
+                    alert(errorMsg);
+                }
+            }
+        } catch (error) {
+            console.error('登录请求失败:', error);
+            alert('网络请求失败，请检查网络连接后重试');
+            window.electronAPI.reportError(error);
+        }
+    });
+
+    document.getElementById('emailForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const email = this.querySelector('input[name="email"]').value;
+        const code = this.querySelector('input[name="code"]').value;
+
+        if (!email || !isValidEmail(email)) {
+            alert('请输入正确的邮箱地址');
+            return;
+        }
+
+        if (!code) {
+            alert('请输入验证码');
+            return;
+        }
+
+        try {
+            const response = await fetch(API_BASE_URL + '/loginByEmail', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `email=${encodeURIComponent(email)}&code=${encodeURIComponent(code)}`
+            });
+
+            if (response.ok) {
+                // 登录成功，通知主进程
+                window.ipcRenderer.send('navigate', 'pc-index.html');
+            } else {
+                alert('登录失败，请检查验证码是否正确');
+            }
+        } catch (error) {
+            alert('登录失败，请稍后重试');
+            console.error('Login error:', error);
+        }
+    });
+</script>
+</body>
+</html>
