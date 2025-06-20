@@ -45,7 +45,7 @@ function connectWebSocket(loggedInPhone) {
     addLog('尝试连接到WebSocket服务器...');
 
     // 使用从主进程获取的手机号
-    const wsUrl = `wss://offerspring.cn/ws/endpoint?clientType=pc&userId=${encodeURIComponent(loggedInPhone)}`;
+    const wsUrl = `wss://offerguide.cn/ws/endpoint?clientType=pc&userId=${encodeURIComponent(loggedInPhone)}`;
     socket = new WebSocket(wsUrl);
 
     socket.onopen = function() {
